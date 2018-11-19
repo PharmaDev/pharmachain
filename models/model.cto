@@ -1,0 +1,64 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/**
+ * My commodity trading network
+ */
+namespace org.example.mynetwork
+
+enum MedicineUnitType {
+	o millilitre
+    o piece
+    o milligram
+}
+
+asset Receipt identified by id {
+    o String id
+    o DateTime creationTime
+    o DateTime validTime
+    o String medicineName
+    o Double medicineDosage
+    o MedicineUnitType medicineUnit
+    o Double medicineAmount
+    --> Doctor doctor
+    --> Patient patient
+    --> Pharmacy pharmacy
+}
+
+participant Patient identified by id {
+    o String id
+    o String firstName
+    o String lastName
+    --> Insurance insurance
+}
+
+participant Pharmacy identified by id {
+    o String id
+    o String name
+}
+
+participant Insurance identified by id {
+    o String id
+    o String name
+}
+
+participant Doctor identified by id {
+    o String id
+    o String name
+}
+
+transaction PharamcySelection {
+    --> Receipt Receipt
+    --> Pharmacy selectedPharmacy
+}
