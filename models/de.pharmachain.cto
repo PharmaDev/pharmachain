@@ -15,40 +15,59 @@
 /**
  * My commodity trading network
  */
-namespace org.example.mynetwork
+namespace de.pharmachain
 
+// depracted
 enum MedicineUnitType {
 	o millilitre
     o piece
     o milligram
 }
 
+enum ReceiptState {
+	o open
+    o progress
+    o closed
+}
+
 asset Receipt identified by id {
+    o ReceiptState state default="open"
     o String id
-    o DateTime creationTime
-    o DateTime validTime
-    o String medicineName
-    o Double medicineDosage
-    o MedicineUnitType medicineUnit
-    o Double medicineAmount
+    o String prescription
+    o String deliveryStreet optional
+    o String deliveryCity optional
+    o String deliveryPostal optional
     --> Doctor doctor
     --> Patient patient
+    --> Offer offer optional
+}
+
+asset Offer identified by id {
+    o String id
+    o String description
+    o String delivery
+    o Double insuranceCost
+    o Double patientCost
     --> Pharmacy pharmacy
+    --> Receipt receipt
 }
 
 participant Patient identified by id {
     o String id
     o String firstName
     o String lastName
-    --> Insurance insurance
+	o Double money default=0.0
+  	--> Insurance insurance
 }
 
 participant Pharmacy identified by id {
+  	o Double money default=0.0
     o String id
     o String name
 }
 
 participant Insurance identified by id {
+  	o Double money default=0.0
     o String id
     o String name
 }
@@ -58,7 +77,14 @@ participant Doctor identified by id {
     o String name
 }
 
-transaction PharamcySelection {
-    --> Receipt Receipt
-    --> Pharmacy selectedPharmacy
+transaction PositionSelection {
+    --> Receipt receipt
+    o String deliveryStreet 
+    o String deliveryCity 
+    o String deliveryPostal 
+}
+
+transaction OfferAccepted {
+	--> Receipt receipt
+    --> Offer acceptedOffer
 }
