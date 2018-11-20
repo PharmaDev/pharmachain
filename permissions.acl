@@ -28,8 +28,8 @@ rule NetworkAdminSystem {
     action: ALLOW
 }
 
-rule PatientUpdateThemselvesOnly {
-  description: "Patient can see and update their own record only"
+rule PatientsSeeUpdateThemselvesOnly {
+  description: "Patients can see and update their own record only"
   participant(p1): "de.pharmachain.Patient"
   operation: READ, UPDATE
   resource(p2): "de.pharmachain.Patient"
@@ -37,3 +37,47 @@ rule PatientUpdateThemselvesOnly {
   action: ALLOW
 }
 
+rule PharmacySeeUpdateThemselvesOnly {
+  description: "Pharmacies can see and update their own record only"
+  participant(p1): "de.pharmachain.Pharmacy"
+  operation: READ, UPDATE
+  resource(p2): "de.pharmachain.Pharmacy"
+  condition: (p1.getIdentifier() == p2.getIdentifier())
+  action: ALLOW
+}
+
+rule InsuranceSeeUpdateThemselvesOnly {
+  description: "Insurances can see and update their own record only"
+  participant(p1): "de.pharmachain.Insurance"
+  operation: READ, UPDATE
+  resource(p2): "de.pharmachain.Insurance"
+  condition: (p1.getIdentifier() == p2.getIdentifier())
+  action: ALLOW
+}
+
+rule DoctorSeeUpdateThemselvesOnly {
+  description: "Doctors can see and update their own record only"
+  participant(p1): "de.pharmachain.Doctor"
+  operation: READ, UPDATE
+  resource(p2): "de.pharmachain.Doctor"
+  condition: (p1.getIdentifier() == p2.getIdentifier())
+  action: ALLOW
+}
+
+rule PatientSeeUpdateCreateOnlyTheirReceipts {
+  description: "Patients can create, see and update only their own receipts"
+  participant(p1): "de.pharmachain.Patient"
+  operation: READ, CREATE, UPDATE
+  resource(p2): "de.pharmachain.Receipt"
+  condition: (p1.getIdentifier() == p2.patient.getIdentifier())
+  action: ALLOW
+}
+
+rule PatientSeeUpdateCreateOnlyTheirOrders {
+  description: "Pharmacies can create, see and update only their own orders"
+  participant(p1): "de.pharmachain.Pharmacy"
+  operation: READ, CREATE, UPDATE
+  resource(p2): "de.pharmachain.Receipt"
+  condition: (p1.getIdentifier() == p2.pharmacy.getIdentifier())
+  action: ALLOW
+}
