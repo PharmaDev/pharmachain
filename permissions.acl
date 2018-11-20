@@ -27,3 +27,13 @@ rule NetworkAdminSystem {
     resource: "org.hyperledger.composer.system.**"
     action: ALLOW
 }
+
+rule PatientUpdateThemselvesOnly {
+  description: "Patient can see and update their own record only"
+  participant(p1): "de.pharmachain.Patient"
+  operation: READ, UPDATE
+  resource(p2): "de.pharmachain.Patient"
+  condition: (p1.getIdentifier() == p2.getIdentifier())
+  action: ALLOW
+}
+
