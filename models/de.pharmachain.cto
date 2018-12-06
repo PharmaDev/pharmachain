@@ -17,68 +17,141 @@
  */
 namespace de.pharmachain
 
+/**
+ * States a receipt can be in:
+ * open : created by doctor and received by patient -> created
+ * progress : used by patient, displayed to pharmacys -> transaction: PositionSelection
+ * closed : offer by pharmacy accepted by user -> transaction: OfferAccepted
+ */
 enum ReceiptState {
-	o open
+    o open
     o progress
     o closed
 }
 
+/**
+ * States a offer can be in:
+ * open : created by pharmacy 
+ * accepted : accepted by patient
+ * declined : declined by patient
+ */
+enum OfferState {
+    o open
+    o accepted
+    o declined
+}
+
+/**
+ * A medical prescription
+ */
 asset Receipt identified by id {
-    o ReceiptState state default="open"
     o String id
+    // state
+    o ReceiptState state default="open"
+    o DateTime stateChangeAt
+    // prescription data
     o String prescription
+    // delivery adress
     o String deliveryStreet optional
     o String deliveryCity optional
     o String deliveryPostal optional
+    // acceptedOffer
+    --> Offer acceptedOffer optional
+    // references
     --> Doctor doctor
     --> Patient patient
-    --> Offer offer optional
+
 }
 
+/**
+ * Offer by pharmacy to deliver prescription
+ */
 asset Offer identified by id {
     o String id
+    // state
+    o OfferState state default="open"
+    o DateTime stateChangeAt
+    // medication data
     o String description
+    o String producer
+    o String dosage
+    o String amount
+    // delivery details
     o String delivery
+    o DateTime deliveryBy
+    // cost
     o Double insuranceCost
     o Double patientCost
+    // references
     --> Pharmacy pharmacy
     --> Receipt receipt
 }
 
+/**
+ * A patient
+ */
 participant Patient identified by id {
     o String id
+    // personal info
     o String firstName
     o String lastName
-    o String birthday
-	o Double money default=0.0
-  	--> Insurance insurance
+    o DateTime birthday
+    // default delivery
+    o String def_street
+    o String def_city
+    o String def_plz
+    // money
+    o Double money default=0.0
+    // references
+    --> Insurance insurance
 }
 
+/**
+  A pharmacy
+ */
 participant Pharmacy identified by id {
-  	o Double money default=0.0
     o String id
     o String name
+    o Double money default=0.0
 }
 
+/**
+ * A insurance 
+ */
 participant Insurance identified by id {
-  	o Double money default=0.0
     o String id
     o String name
+  	o Double money default=0.0
 }
 
+/**
+ * A doctor
+ */
 participant Doctor identified by id {
     o String id
     o String name
 }
 
+/**
+ * Transaction on a receipt, adding the delivery adress
+ */
 transaction PositionSelection {
-    --> Receipt receipt
+    // delivery adress
     o String deliveryStreet 
     o String deliveryCity 
-    o String deliveryPostal 
+    o String deliveryPostal
+    // timestamp of request (tbd in backend!)
+    o DateTime ts
+    // references
+    --> Receipt receipt
 }
 
+/**
+ * Transaction on a receipt, adding the accepted offer
+ */
 transaction OfferAccepted {
-	--> Receipt receipt
-    --> Offer acceptedOffer
+  --> Offer acceptedOffer
+  // timestamp of request (tbd in backend!)
+  o DateTime ts
+  --> Receipt receipt
 }
