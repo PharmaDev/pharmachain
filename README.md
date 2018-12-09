@@ -2,15 +2,42 @@
 
 A project putting the transactions between patients, doctors, pharmacies and insurances on the blockchain.
 
-# Installation 
+## Installation
 
-Basicly, follow this tutorial
-https://hyperledger.github.io/composer/latest/installing/installing-prereqs.html
-https://hyperledger.github.io/composer/latest/installing/development-tools.html
+Snippets um Projekt auf Ubuntu 18.04 zu installieren:
 
-Man kann Business Networks nicht über Composer deinstallieren, WTF
+### Vorbedingungen/Depedencies:
+Source: https://hyperledger.github.io/composer/latest/installing/installing-prereqs.html
+```
+curl -O https://hyperledger.github.io/composer/latest/prereqs-ubuntu.sh
+chmod u+x prereqs-ubuntu.sh
+./prereqs-ubuntu.sh
+```
+
+### Hyperledger Composer:
+Source: https://hyperledger.github.io/composer/latest/installing/development-tools.html  
+Wichtig: Exakte Version, mit aktuelleren kann das BNA nicht depolyed werden.
+```
+npm install -g composer-cli@0.20
+npm install -g composer-rest-server@0.20
+npm install -g generator-hyperledger-composer@0.20
+npm install -g yo
+```
+
+### Hyperledger Fabric:
+Source: https://hyperledger.github.io/composer/latest/installing/development-tools.html
+```
+mkdir ~/fabric-dev-servers && cd ~/fabric-dev-servers
+curl -O https://raw.githubusercontent.com/hyperledger/composer-tools/master/packages/fabric-dev-servers/fabric-dev-servers.tar.gz
+tar -xvf fabric-dev-servers.tar.gz
+cd ~/fabric-dev-servers
+export FABRIC_VERSION=hlfv12
+./downloadFabric.sh
+```
+
+### Anmerkungen
+
+Man kann Business Networks nicht über Composer deinstallieren, vielleicht anmerken  
 https://github.com/hyperledger/composer/issues/3235
 
 
-TODO:
-Add short summary of commands to run on fresh Ubuntu VM
