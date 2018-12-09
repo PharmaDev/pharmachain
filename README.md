@@ -7,7 +7,6 @@ A project putting the transactions between patients, doctors, pharmacies and ins
 Snippets um Projekt auf Ubuntu 18.04 zu installieren:
 
 ### Vorbedingungen/Depedencies:
-Source: https://hyperledger.github.io/composer/latest/installing/installing-prereqs.html
 ```
 curl -O https://hyperledger.github.io/composer/latest/prereqs-ubuntu.sh
 chmod u+x prereqs-ubuntu.sh
@@ -15,7 +14,6 @@ chmod u+x prereqs-ubuntu.sh
 ```
 
 ### Hyperledger Composer:
-Source: https://hyperledger.github.io/composer/latest/installing/development-tools.html  
 Wichtig: Exakte Version, mit aktuelleren kann das BNA nicht depolyed werden.
 ```
 npm install -g composer-cli@0.20
@@ -25,7 +23,6 @@ npm install -g yo
 ```
 
 ### Hyperledger Fabric:
-Source: https://hyperledger.github.io/composer/latest/installing/development-tools.html
 ```
 mkdir ~/fabric-dev-servers && cd ~/fabric-dev-servers
 curl -O https://raw.githubusercontent.com/hyperledger/composer-tools/master/packages/fabric-dev-servers/fabric-dev-servers.tar.gz
@@ -37,7 +34,13 @@ export FABRIC_VERSION=hlfv12
 
 ## Deployen
 
-Source: https://hyperledger.github.io/composer/latest/tutorials/developer-tutorial.html  
+Hyperledger Fabric starten, neue PeerAdminCard erstellen:  
+```
+cd ~/fabric-dev-servers
+export FABRIC_VERSION=hlfv12
+./startFabric.sh
+./createPeerAdminCard.sh
+```
 
 Um das Projekt zu deployen, zunächst Business Network Archive aus Source-Dateien erstellen. 
 Ergebnis ist eine .bna Datei. Der Dateiname hat den Aufbau pharmachain@<Versionsnummer>.bna.
@@ -96,7 +99,14 @@ cd ~/fabric-dev-servers
 ./stopFabric.sh
 ./teardownFabric.sh
 ./startFabric.sh
+./createPeerAdminCard.sh
 ```
+
+## Quellen
+
+Source: https://hyperledger.github.io/composer/latest/installing/installing-prereqs.html
+Source: https://hyperledger.github.io/composer/latest/installing/development-tools.html
+Source: https://hyperledger.github.io/composer/latest/tutorials/developer-tutorial.html  
 
 
 
