@@ -85,7 +85,7 @@ Dazu mglw noch laufende Instanz beenden und wie oben starten.
 
 TODO  
 
-### Anmerkungen
+## Anmerkungen
 
 Man kann Business Networks nicht über Composer deinstallieren:
 https://github.com/hyperledger/composer/issues/3235
