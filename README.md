@@ -35,6 +35,36 @@ export FABRIC_VERSION=hlfv12
 ./downloadFabric.sh
 ```
 
+## Deployen
+
+Source: https://hyperledger.github.io/composer/latest/tutorials/developer-tutorial.html  
+
+Um das Projekt zu deployen, zunächst Business Network Archive aus Source-Dateien erstellen. 
+Ergebnis ist eine .bna Datei. Der Dateiname hat den Aufbau pharmachain@<Versionsnummer>.bna.
+  
+```
+composer archive create -t dir -n .
+
+```
+
+Zum Installieren:
+
+```
+composer network install --card PeerAdmin@hlfv1 --archiveFile tutorial-network@<Versionsnummer>.bna  
+composer network start --networkName pharmachain --networkVersion <Versionsnummer> --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
+composer card import --file networkadmin.card
+composer network ping --card admin@pharmachain
+
+```
+
+Rest API generieren und starten, Endpunkte beginnen mit http://localhost:3000.  
+
+```
+composer-rest-server -c admin@pharmachain -n always -u true -w true
+```
+
+
+
 ### Anmerkungen
 
 Man kann Business Networks nicht über Composer deinstallieren, vielleicht anmerken  
