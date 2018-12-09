@@ -63,11 +63,41 @@ Rest API generieren und starten, Endpunkte beginnen mit http://localhost:3000.
 composer-rest-server -c admin@pharmachain -n always -u true -w true
 ```
 
+## Entwickeln mit Composer Playground
 
+Composer Playground installieren:  
+```
+npm install -g generator-hyperledger-composer@0.20
+```
+
+Composer Playground starten:
+```
+composer-playground
+```
+
+Zur Bedienung von Composer Playground:  
+https://hyperledger.github.io/composer/latest/tutorials/playground-tutorial.html
+
+Nachdem ein Update deployed wurde, muss die REST-API neu generiert und gestartet werden.  
+Dazu mglw noch laufende Instanz beenden und wie oben starten. 
+
+## Entwickeln ohne Composer Playground
+
+TODO  
 
 ### Anmerkungen
 
-Man kann Business Networks nicht über Composer deinstallieren, vielleicht anmerken  
+Man kann Business Networks nicht über Composer deinstallieren:
 https://github.com/hyperledger/composer/issues/3235
+
+Falls ein Problem auftritt (z.B. Installation unterbrochen), Fabric ausschalten, zerstören, neustarten:
+```
+cd ~/fabric-dev-servers
+./stopFabric.sh
+./teardownFabric.sh
+./startFabric.sh
+```
+
+
 
 
