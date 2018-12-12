@@ -48,7 +48,7 @@ asset Receipt identified by id {
     o String id
     // state
     o ReceiptState state default="open"
-    o DateTime stateChangeAt
+    o DateTime stateChangeAt optional
     // prescription data
     o String prescription
     // delivery adress
