@@ -18,8 +18,6 @@ Wichtig: Exakte Version, mit aktuelleren kann das BNA nicht depolyed werden.
 ```
 npm install -g composer-cli@0.20
 npm install -g composer-rest-server@0.20
-npm install -g generator-hyperledger-composer@0.20
-npm install -g yo
 ```
 
 ### Hyperledger Fabric:
