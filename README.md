@@ -74,7 +74,7 @@ composer-rest-server -c admin@pharmachain -n always -u true -w true
 
 Composer Playground installieren:  
 ```
-npm install -g generator-hyperledger-composer@0.20
+npm install -g composer-playground@0.20
 ```
 
 Composer Playground starten:
