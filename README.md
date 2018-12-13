@@ -20,6 +20,12 @@ npm install -g composer-cli@0.20
 npm install -g composer-rest-server@0.20
 ```
 
+Falls neue Projekte erstellt werden sollen, sind diese Tools nützlich:  
+```
+npm install -g generator-hyperledger-composer@0.20
+npm install -g yo
+```
+
 ### Hyperledger Fabric:
 ```
 mkdir ~/fabric-dev-servers && cd ~/fabric-dev-servers
