@@ -48,14 +48,17 @@ asset Receipt identified by id {
     o String id
     // state
     o ReceiptState state default="open"
-    o DateTime stateChangeAt optional
-    // prescription data
-    o String prescription
-    // delivery adress
+    o DateTime stateChangeAt 
+    // prescription data (added by dcotor)
+    o String name
+    o String dosage
+    o String quantity
+    o DateTime createdAt
+    // delivery adress (added by patient)
     o String deliveryStreet optional
     o String deliveryCity optional
     o String deliveryPostal optional
-    // acceptedOffer
+    // acceptedOffer (added by patient)
     --> Offer acceptedOffer optional
     // references
     --> Doctor doctor
@@ -72,13 +75,11 @@ asset Offer identified by id {
     o OfferState state default="open"
     o DateTime stateChangeAt
     // medication data
-    o String description
     o String producer
-    o String dosage
-    o String amount
+    o DateTime createdAt
     // delivery details
-    o String delivery
-    o DateTime deliveryBy
+    o String deliveryDetails
+    o String deliveryBy
     // cost
     o Double insuranceCost
     o Double patientCost
@@ -97,9 +98,9 @@ participant Patient identified by id {
     o String lastName
     o DateTime birthday
     // default delivery
-    o String def_street
-    o String def_city
-    o String def_plz
+    o String def_street optional
+    o String def_city optional
+    o String def_plz optional
     // money
     o Double money default=0.0
     // references
@@ -137,6 +138,7 @@ participant Doctor identified by id {
  */
 transaction PositionSelection {
     // delivery adress
+    o Boolean useDefault
     o String deliveryStreet 
     o String deliveryCity 
     o String deliveryPostal

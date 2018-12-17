@@ -21,3 +21,4 @@ eval "composer network start --networkName $BNA --networkVersion $VER --networkA
 eval "composer card delete --card admin@$BNA"
 eval "composer card import --file networkadmin.card"
 eval "composer network ping --card admin@$BNA"
+eval "composer-rest-server -c admin@$BNA -n always -u true -w true"
