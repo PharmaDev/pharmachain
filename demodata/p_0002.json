@@ -1,0 +1,12 @@
+{
+    "$class": "de.pharmachain.Patient",
+    "id": "p_0002",
+    "firstName": "Harry",
+    "lastName": "Potter",
+    "birthday": "2020-01-11T23:00:00.000Z",
+    "def_street": "Leipziger Straße",
+    "def_city": "Leipzig",
+    "def_plz": "15746",
+    "money": "0.0",
+    "insurance": "resource:de.pharmachain.Insurance#i_0002"
+}

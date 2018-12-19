@@ -1,0 +1,5 @@
+{
+    "$class": "de.pharmachain.Doctor",
+    "id": "doc_0001",
+    "name": "Doctor Who"
+}

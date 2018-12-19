@@ -1,0 +1,12 @@
+{
+    "$class": "de.pharmachain.Patient",
+    "id": "p_0001",
+    "firstName": "Tom",
+    "lastName": "Riddle",
+    "birthday": "1996-12-23T23:00:00.000Z",
+    "def_street": "Riddle House",
+    "def_city": "Little Hangleton",
+    "def_plz": "15745",
+    "money": "0.0",
+    "insurance": "resource:de.pharmachain.Insurance#i_0001"
+}
