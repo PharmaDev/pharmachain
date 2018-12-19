@@ -17,7 +17,7 @@
 *.bna
 *.card
 
-DevServer_connnection.json
+DevServer_connection.json
 
 /dist/*
 /node_modules
