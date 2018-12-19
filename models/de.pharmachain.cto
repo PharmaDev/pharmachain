@@ -79,6 +79,7 @@ asset Offer identified by id {
     o DateTime createdAt
     // delivery details
     o String deliveryDetails
+    // TODO einfügen
     o String deliveryBy
     // cost
     o Double insuranceCost
@@ -138,7 +139,8 @@ participant Doctor identified by id {
  */
 transaction PositionSelection {
     // delivery adress
-    o Boolean useDefault
+    // TODO use to save space
+    // o Boolean useDefault
     o String deliveryStreet 
     o String deliveryCity 
     o String deliveryPostal
